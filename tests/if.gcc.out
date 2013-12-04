@@ -1,0 +1,8 @@
+if.c: In function 'main':
+if.c:5:3: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+if.c:9:3: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+if.c:13:3: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+if.c:16:3: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+if.c:20:3: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+if.c:23:3: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+if.c:26:2: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]

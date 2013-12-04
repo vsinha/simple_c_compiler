@@ -1,0 +1,2 @@
+equal.c: In function 'main':
+equal.c:4:2: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]

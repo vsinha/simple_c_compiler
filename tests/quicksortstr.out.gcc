@@ -1,0 +1,14 @@
+-------- Before -------
+0: Rachael
+1: Monica
+2: Phoebe
+3: Joey
+4: Ross
+5: Chandler
+-------- After -------
+0: Chandler
+1: Joey
+2: Monica
+3: Phoebe
+4: Rachael
+5: Ross

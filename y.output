@@ -1,0 +1,1957 @@
+Terminals unused in grammar
+
+   NOTOKEN
+
+
+State 140 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: goal $end
+
+    1 goal: program
+
+    2 program: function_or_var_list
+
+    3 function_or_var_list: function_or_var_list function
+    4                     | function_or_var_list global_var
+    5                     | /* empty */
+
+    6 $@1: /* empty */
+
+    7 $@2: /* empty */
+
+    8 function: var_type WORD $@1 LPARENT arguments RPARENT $@2 compound_statement
+
+    9 arg_list: arg
+   10         | arg_list COMA arg
+
+   11 arguments: arg_list
+   12          | /* empty */
+
+   13 arg: var_type WORD
+
+   14 global_var: var_type global_var_list SEMICOLON
+
+   15 global_var_list: WORD
+   16                | global_var_list COMA WORD
+
+   17 var_type: CHARSTAR
+   18         | CHARSTARSTAR
+   19         | LONG
+   20         | LONGSTAR
+   21         | VOID
+
+   22 assignment: WORD EQUAL expression
+   23           | WORD LBRACE expression RBRACE EQUAL expression
+
+   24 call: WORD LPARENT call_arguments RPARENT
+
+   25 call_arg_list: expression
+   26              | call_arg_list COMA expression
+
+   27 call_arguments: call_arg_list
+   28               | /* empty */
+
+   29 expression: logical_or_expr
+
+   30 logical_or_expr: logical_and_expr
+   31                | logical_or_expr OROR logical_and_expr
+
+   32 logical_and_expr: equality_expr
+   33                 | logical_and_expr ANDAND equality_expr
+
+   34 equality_expr: relational_expr
+   35              | equality_expr EQUALEQUAL relational_expr
+   36              | equality_expr NOTEQUAL relational_expr
+
+   37 relational_expr: additive_expr
+   38                | relational_expr LESS additive_expr
+   39                | relational_expr GREAT additive_expr
+   40                | relational_expr LESSEQUAL additive_expr
+   41                | relational_expr GREATEQUAL additive_expr
+
+   42 additive_expr: multiplicative_expr
+   43              | additive_expr PLUS multiplicative_expr
+   44              | additive_expr MINUS multiplicative_expr
+
+   45 multiplicative_expr: primary_expr
+   46                    | multiplicative_expr TIMES primary_expr
+   47                    | multiplicative_expr DIVIDE primary_expr
+   48                    | multiplicative_expr PERCENT primary_expr
+
+   49 primary_expr: STRING_CONST
+   50             | call
+   51             | WORD
+   52             | WORD LBRACE expression RBRACE
+   53             | AMPERSAND WORD
+   54             | INTEGER_CONST
+   55             | LPARENT expression RPARENT
+
+   56 compound_statement: LCURLY statement_list RCURLY
+
+   57 statement_list: statement_list statement
+   58               | /* empty */
+
+   59 local_var: var_type local_var_list SEMICOLON
+
+   60 local_var_list: WORD
+   61               | local_var_list COMA WORD
+
+   62 statement: assignment SEMICOLON
+   63          | call SEMICOLON
+   64          | local_var
+   65          | compound_statement
+
+   66 $@3: /* empty */
+
+   67 $@4: /* empty */
+
+   68 statement: IF LPARENT expression RPARENT $@3 statement $@4 else_optional
+
+   69 $@5: /* empty */
+
+   70 $@6: /* empty */
+
+   71 statement: WHILE LPARENT $@5 expression RPARENT $@6 statement
+
+   72 $@7: /* empty */
+
+   73 $@8: /* empty */
+
+   74 statement: DO $@7 statement WHILE LPARENT expression RPARENT $@8 SEMICOLON
+
+   75 $@9: /* empty */
+
+   76 $@10: /* empty */
+
+   77 $@11: /* empty */
+
+   78 statement: FOR LPARENT assignment SEMICOLON $@9 expression SEMICOLON $@10 assignment RPARENT $@11 statement
+
+   79 $@12: /* empty */
+
+   80 statement: $@12 jump_statement
+
+   81 else_optional: ELSE statement
+   82              | /* empty */
+
+   83 jump_statement: CONTINUE SEMICOLON
+   84               | BREAK SEMICOLON
+   85               | RETURN expression SEMICOLON
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+WORD (258) 8 13 15 16 22 23 24 51 52 53 60 61
+NOTOKEN (259)
+LPARENT (260) 8 24 55 68 71 74 78
+RPARENT (261) 8 24 55 68 71 74 78
+LBRACE (262) 23 52
+RBRACE (263) 23 52
+LCURLY (264) 56
+RCURLY (265) 56
+COMA (266) 10 16 26 61
+SEMICOLON (267) 14 59 62 63 74 78 83 84 85
+EQUAL (268) 22 23
+STRING_CONST (269) 49
+LONG (270) 19
+LONGSTAR (271) 20
+VOID (272) 21
+CHARSTAR (273) 17
+CHARSTARSTAR (274) 18
+INTEGER_CONST (275) 54
+AMPERSAND (276) 53
+OROR (277) 31
+ANDAND (278) 33
+EQUALEQUAL (279) 35
+NOTEQUAL (280) 36
+LESS (281) 38
+GREAT (282) 39
+LESSEQUAL (283) 40
+GREATEQUAL (284) 41
+PLUS (285) 43
+MINUS (286) 44
+TIMES (287) 46
+DIVIDE (288) 47
+PERCENT (289) 48
+IF (290) 68
+ELSE (291) 81
+WHILE (292) 71 74
+DO (293) 74
+FOR (294) 78
+CONTINUE (295) 83
+BREAK (296) 84
+RETURN (297) 85
+
+
+Nonterminals, with rules where they appear
+
+$accept (43)
+    on left: 0
+goal (44)
+    on left: 1, on right: 0
+program (45)
+    on left: 2, on right: 1
+function_or_var_list (46)
+    on left: 3 4 5, on right: 2 3 4
+function (47)
+    on left: 8, on right: 3
+$@1 (48)
+    on left: 6, on right: 8
+$@2 (49)
+    on left: 7, on right: 8
+arg_list (50)
+    on left: 9 10, on right: 10 11
+arguments (51)
+    on left: 11 12, on right: 8
+arg (52)
+    on left: 13, on right: 9 10
+global_var (53)
+    on left: 14, on right: 4
+global_var_list (54)
+    on left: 15 16, on right: 14 16
+var_type (55)
+    on left: 17 18 19 20 21, on right: 8 13 14 59
+assignment (56)
+    on left: 22 23, on right: 62 78
+call (57)
+    on left: 24, on right: 50 63
+call_arg_list (58)
+    on left: 25 26, on right: 26 27
+call_arguments (59)
+    on left: 27 28, on right: 24
+expression (60)
+    on left: 29, on right: 22 23 25 26 52 55 68 71 74 78 85
+logical_or_expr (61)
+    on left: 30 31, on right: 29 31
+logical_and_expr (62)
+    on left: 32 33, on right: 30 31 33
+equality_expr (63)
+    on left: 34 35 36, on right: 32 33 35 36
+relational_expr (64)
+    on left: 37 38 39 40 41, on right: 34 35 36 38 39 40 41
+additive_expr (65)
+    on left: 42 43 44, on right: 37 38 39 40 41 43 44
+multiplicative_expr (66)
+    on left: 45 46 47 48, on right: 42 43 44 46 47 48
+primary_expr (67)
+    on left: 49 50 51 52 53 54 55, on right: 45 46 47 48
+compound_statement (68)
+    on left: 56, on right: 8 65
+statement_list (69)
+    on left: 57 58, on right: 56 57
+local_var (70)
+    on left: 59, on right: 64
+local_var_list (71)
+    on left: 60 61, on right: 59 61
+statement (72)
+    on left: 62 63 64 65 68 71 74 78 80, on right: 57 68 71 74 78 81
+$@3 (73)
+    on left: 66, on right: 68
+$@4 (74)
+    on left: 67, on right: 68
+$@5 (75)
+    on left: 69, on right: 71
+$@6 (76)
+    on left: 70, on right: 71
+$@7 (77)
+    on left: 72, on right: 74
+$@8 (78)
+    on left: 73, on right: 74
+$@9 (79)
+    on left: 75, on right: 78
+$@10 (80)
+    on left: 76, on right: 78
+$@11 (81)
+    on left: 77, on right: 78
+$@12 (82)
+    on left: 79, on right: 80
+else_optional (83)
+    on left: 81 82, on right: 68
+jump_statement (84)
+    on left: 83 84 85, on right: 80
+
+
+state 0
+
+    0 $accept: . goal $end
+
+    $default  reduce using rule 5 (function_or_var_list)
+
+    goal                  go to state 1
+    program               go to state 2
+    function_or_var_list  go to state 3
+
+
+state 1
+
+    0 $accept: goal . $end
+
+    $end  shift, and go to state 4
+
+
+state 2
+
+    1 goal: program .
+
+    $default  reduce using rule 1 (goal)
+
+
+state 3
+
+    2 program: function_or_var_list .
+    3 function_or_var_list: function_or_var_list . function
+    4                     | function_or_var_list . global_var
+
+    LONG          shift, and go to state 5
+    LONGSTAR      shift, and go to state 6
+    VOID          shift, and go to state 7
+    CHARSTAR      shift, and go to state 8
+    CHARSTARSTAR  shift, and go to state 9
+
+    $default  reduce using rule 2 (program)
+
+    function    go to state 10
+    global_var  go to state 11
+    var_type    go to state 12
+
+
+state 4
+
+    0 $accept: goal $end .
+
+    $default  accept
+
+
+state 5
+
+   19 var_type: LONG .
+
+    $default  reduce using rule 19 (var_type)
+
+
+state 6
+
+   20 var_type: LONGSTAR .
+
+    $default  reduce using rule 20 (var_type)
+
+
+state 7
+
+   21 var_type: VOID .
+
+    $default  reduce using rule 21 (var_type)
+
+
+state 8
+
+   17 var_type: CHARSTAR .
+
+    $default  reduce using rule 17 (var_type)
+
+
+state 9
+
+   18 var_type: CHARSTARSTAR .
+
+    $default  reduce using rule 18 (var_type)
+
+
+state 10
+
+    3 function_or_var_list: function_or_var_list function .
+
+    $default  reduce using rule 3 (function_or_var_list)
+
+
+state 11
+
+    4 function_or_var_list: function_or_var_list global_var .
+
+    $default  reduce using rule 4 (function_or_var_list)
+
+
+state 12
+
+    8 function: var_type . WORD $@1 LPARENT arguments RPARENT $@2 compound_statement
+   14 global_var: var_type . global_var_list SEMICOLON
+
+    WORD  shift, and go to state 13
+
+    global_var_list  go to state 14
+
+
+state 13
+
+    8 function: var_type WORD . $@1 LPARENT arguments RPARENT $@2 compound_statement
+   15 global_var_list: WORD .
+
+    LPARENT   reduce using rule 6 ($@1)
+    $default  reduce using rule 15 (global_var_list)
+
+    $@1  go to state 15
+
+
+state 14
+
+   14 global_var: var_type global_var_list . SEMICOLON
+   16 global_var_list: global_var_list . COMA WORD
+
+    COMA       shift, and go to state 16
+    SEMICOLON  shift, and go to state 17
+
+
+state 15
+
+    8 function: var_type WORD $@1 . LPARENT arguments RPARENT $@2 compound_statement
+
+    LPARENT  shift, and go to state 18
+
+
+state 16
+
+   16 global_var_list: global_var_list COMA . WORD
+
+    WORD  shift, and go to state 19
+
+
+state 17
+
+   14 global_var: var_type global_var_list SEMICOLON .
+
+    $default  reduce using rule 14 (global_var)
+
+
+state 18
+
+    8 function: var_type WORD $@1 LPARENT . arguments RPARENT $@2 compound_statement
+
+    LONG          shift, and go to state 5
+    LONGSTAR      shift, and go to state 6
+    VOID          shift, and go to state 7
+    CHARSTAR      shift, and go to state 8
+    CHARSTARSTAR  shift, and go to state 9
+
+    $default  reduce using rule 12 (arguments)
+
+    arg_list   go to state 20
+    arguments  go to state 21
+    arg        go to state 22
+    var_type   go to state 23
+
+
+state 19
+
+   16 global_var_list: global_var_list COMA WORD .
+
+    $default  reduce using rule 16 (global_var_list)
+
+
+state 20
+
+   10 arg_list: arg_list . COMA arg
+   11 arguments: arg_list .
+
+    COMA  shift, and go to state 24
+
+    $default  reduce using rule 11 (arguments)
+
+
+state 21
+
+    8 function: var_type WORD $@1 LPARENT arguments . RPARENT $@2 compound_statement
+
+    RPARENT  shift, and go to state 25
+
+
+state 22
+
+    9 arg_list: arg .
+
+    $default  reduce using rule 9 (arg_list)
+
+
+state 23
+
+   13 arg: var_type . WORD
+
+    WORD  shift, and go to state 26
+
+
+state 24
+
+   10 arg_list: arg_list COMA . arg
+
+    LONG          shift, and go to state 5
+    LONGSTAR      shift, and go to state 6
+    VOID          shift, and go to state 7
+    CHARSTAR      shift, and go to state 8
+    CHARSTARSTAR  shift, and go to state 9
+
+    arg       go to state 27
+    var_type  go to state 23
+
+
+state 25
+
+    8 function: var_type WORD $@1 LPARENT arguments RPARENT . $@2 compound_statement
+
+    $default  reduce using rule 7 ($@2)
+
+    $@2  go to state 28
+
+
+state 26
+
+   13 arg: var_type WORD .
+
+    $default  reduce using rule 13 (arg)
+
+
+state 27
+
+   10 arg_list: arg_list COMA arg .
+
+    $default  reduce using rule 10 (arg_list)
+
+
+state 28
+
+    8 function: var_type WORD $@1 LPARENT arguments RPARENT $@2 . compound_statement
+
+    LCURLY  shift, and go to state 29
+
+    compound_statement  go to state 30
+
+
+state 29
+
+   56 compound_statement: LCURLY . statement_list RCURLY
+
+    $default  reduce using rule 58 (statement_list)
+
+    statement_list  go to state 31
+
+
+state 30
+
+    8 function: var_type WORD $@1 LPARENT arguments RPARENT $@2 compound_statement .
+
+    $default  reduce using rule 8 (function)
+
+
+state 31
+
+   56 compound_statement: LCURLY statement_list . RCURLY
+   57 statement_list: statement_list . statement
+
+    WORD          shift, and go to state 32
+    LCURLY        shift, and go to state 29
+    RCURLY        shift, and go to state 33
+    LONG          shift, and go to state 5
+    LONGSTAR      shift, and go to state 6
+    VOID          shift, and go to state 7
+    CHARSTAR      shift, and go to state 8
+    CHARSTARSTAR  shift, and go to state 9
+    IF            shift, and go to state 34
+    WHILE         shift, and go to state 35
+    DO            shift, and go to state 36
+    FOR           shift, and go to state 37
+
+    $default  reduce using rule 79 ($@12)
+
+    var_type            go to state 38
+    assignment          go to state 39
+    call                go to state 40
+    compound_statement  go to state 41
+    local_var           go to state 42
+    statement           go to state 43
+    $@12                go to state 44
+
+
+state 32
+
+   22 assignment: WORD . EQUAL expression
+   23           | WORD . LBRACE expression RBRACE EQUAL expression
+   24 call: WORD . LPARENT call_arguments RPARENT
+
+    LPARENT  shift, and go to state 45
+    LBRACE   shift, and go to state 46
+    EQUAL    shift, and go to state 47
+
+
+state 33
+
+   56 compound_statement: LCURLY statement_list RCURLY .
+
+    $default  reduce using rule 56 (compound_statement)
+
+
+state 34
+
+   68 statement: IF . LPARENT expression RPARENT $@3 statement $@4 else_optional
+
+    LPARENT  shift, and go to state 48
+
+
+state 35
+
+   71 statement: WHILE . LPARENT $@5 expression RPARENT $@6 statement
+
+    LPARENT  shift, and go to state 49
+
+
+state 36
+
+   74 statement: DO . $@7 statement WHILE LPARENT expression RPARENT $@8 SEMICOLON
+
+    $default  reduce using rule 72 ($@7)
+
+    $@7  go to state 50
+
+
+state 37
+
+   78 statement: FOR . LPARENT assignment SEMICOLON $@9 expression SEMICOLON $@10 assignment RPARENT $@11 statement
+
+    LPARENT  shift, and go to state 51
+
+
+state 38
+
+   59 local_var: var_type . local_var_list SEMICOLON
+
+    WORD  shift, and go to state 52
+
+    local_var_list  go to state 53
+
+
+state 39
+
+   62 statement: assignment . SEMICOLON
+
+    SEMICOLON  shift, and go to state 54
+
+
+state 40
+
+   63 statement: call . SEMICOLON
+
+    SEMICOLON  shift, and go to state 55
+
+
+state 41
+
+   65 statement: compound_statement .
+
+    $default  reduce using rule 65 (statement)
+
+
+state 42
+
+   64 statement: local_var .
+
+    $default  reduce using rule 64 (statement)
+
+
+state 43
+
+   57 statement_list: statement_list statement .
+
+    $default  reduce using rule 57 (statement_list)
+
+
+state 44
+
+   80 statement: $@12 . jump_statement
+
+    CONTINUE  shift, and go to state 56
+    BREAK     shift, and go to state 57
+    RETURN    shift, and go to state 58
+
+    jump_statement  go to state 59
+
+
+state 45
+
+   24 call: WORD LPARENT . call_arguments RPARENT
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    $default  reduce using rule 28 (call_arguments)
+
+    call                 go to state 65
+    call_arg_list        go to state 66
+    call_arguments       go to state 67
+    expression           go to state 68
+    logical_or_expr      go to state 69
+    logical_and_expr     go to state 70
+    equality_expr        go to state 71
+    relational_expr      go to state 72
+    additive_expr        go to state 73
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 46
+
+   23 assignment: WORD LBRACE . expression RBRACE EQUAL expression
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    expression           go to state 76
+    logical_or_expr      go to state 69
+    logical_and_expr     go to state 70
+    equality_expr        go to state 71
+    relational_expr      go to state 72
+    additive_expr        go to state 73
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 47
+
+   22 assignment: WORD EQUAL . expression
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    expression           go to state 77
+    logical_or_expr      go to state 69
+    logical_and_expr     go to state 70
+    equality_expr        go to state 71
+    relational_expr      go to state 72
+    additive_expr        go to state 73
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 48
+
+   68 statement: IF LPARENT . expression RPARENT $@3 statement $@4 else_optional
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    expression           go to state 78
+    logical_or_expr      go to state 69
+    logical_and_expr     go to state 70
+    equality_expr        go to state 71
+    relational_expr      go to state 72
+    additive_expr        go to state 73
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 49
+
+   71 statement: WHILE LPARENT . $@5 expression RPARENT $@6 statement
+
+    $default  reduce using rule 69 ($@5)
+
+    $@5  go to state 79
+
+
+state 50
+
+   74 statement: DO $@7 . statement WHILE LPARENT expression RPARENT $@8 SEMICOLON
+
+    WORD          shift, and go to state 32
+    LCURLY        shift, and go to state 29
+    LONG          shift, and go to state 5
+    LONGSTAR      shift, and go to state 6
+    VOID          shift, and go to state 7
+    CHARSTAR      shift, and go to state 8
+    CHARSTARSTAR  shift, and go to state 9
+    IF            shift, and go to state 34
+    WHILE         shift, and go to state 35
+    DO            shift, and go to state 36
+    FOR           shift, and go to state 37
+
+    $default  reduce using rule 79 ($@12)
+
+    var_type            go to state 38
+    assignment          go to state 39
+    call                go to state 40
+    compound_statement  go to state 41
+    local_var           go to state 42
+    statement           go to state 80
+    $@12                go to state 44
+
+
+state 51
+
+   78 statement: FOR LPARENT . assignment SEMICOLON $@9 expression SEMICOLON $@10 assignment RPARENT $@11 statement
+
+    WORD  shift, and go to state 81
+
+    assignment  go to state 82
+
+
+state 52
+
+   60 local_var_list: WORD .
+
+    $default  reduce using rule 60 (local_var_list)
+
+
+state 53
+
+   59 local_var: var_type local_var_list . SEMICOLON
+   61 local_var_list: local_var_list . COMA WORD
+
+    COMA       shift, and go to state 83
+    SEMICOLON  shift, and go to state 84
+
+
+state 54
+
+   62 statement: assignment SEMICOLON .
+
+    $default  reduce using rule 62 (statement)
+
+
+state 55
+
+   63 statement: call SEMICOLON .
+
+    $default  reduce using rule 63 (statement)
+
+
+state 56
+
+   83 jump_statement: CONTINUE . SEMICOLON
+
+    SEMICOLON  shift, and go to state 85
+
+
+state 57
+
+   84 jump_statement: BREAK . SEMICOLON
+
+    SEMICOLON  shift, and go to state 86
+
+
+state 58
+
+   85 jump_statement: RETURN . expression SEMICOLON
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    expression           go to state 87
+    logical_or_expr      go to state 69
+    logical_and_expr     go to state 70
+    equality_expr        go to state 71
+    relational_expr      go to state 72
+    additive_expr        go to state 73
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 59
+
+   80 statement: $@12 jump_statement .
+
+    $default  reduce using rule 80 (statement)
+
+
+state 60
+
+   24 call: WORD . LPARENT call_arguments RPARENT
+   51 primary_expr: WORD .
+   52             | WORD . LBRACE expression RBRACE
+
+    LPARENT  shift, and go to state 45
+    LBRACE   shift, and go to state 88
+
+    $default  reduce using rule 51 (primary_expr)
+
+
+state 61
+
+   55 primary_expr: LPARENT . expression RPARENT
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    expression           go to state 89
+    logical_or_expr      go to state 69
+    logical_and_expr     go to state 70
+    equality_expr        go to state 71
+    relational_expr      go to state 72
+    additive_expr        go to state 73
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 62
+
+   49 primary_expr: STRING_CONST .
+
+    $default  reduce using rule 49 (primary_expr)
+
+
+state 63
+
+   54 primary_expr: INTEGER_CONST .
+
+    $default  reduce using rule 54 (primary_expr)
+
+
+state 64
+
+   53 primary_expr: AMPERSAND . WORD
+
+    WORD  shift, and go to state 90
+
+
+state 65
+
+   50 primary_expr: call .
+
+    $default  reduce using rule 50 (primary_expr)
+
+
+state 66
+
+   26 call_arg_list: call_arg_list . COMA expression
+   27 call_arguments: call_arg_list .
+
+    COMA  shift, and go to state 91
+
+    $default  reduce using rule 27 (call_arguments)
+
+
+state 67
+
+   24 call: WORD LPARENT call_arguments . RPARENT
+
+    RPARENT  shift, and go to state 92
+
+
+state 68
+
+   25 call_arg_list: expression .
+
+    $default  reduce using rule 25 (call_arg_list)
+
+
+state 69
+
+   29 expression: logical_or_expr .
+   31 logical_or_expr: logical_or_expr . OROR logical_and_expr
+
+    OROR  shift, and go to state 93
+
+    $default  reduce using rule 29 (expression)
+
+
+state 70
+
+   30 logical_or_expr: logical_and_expr .
+   33 logical_and_expr: logical_and_expr . ANDAND equality_expr
+
+    ANDAND  shift, and go to state 94
+
+    $default  reduce using rule 30 (logical_or_expr)
+
+
+state 71
+
+   32 logical_and_expr: equality_expr .
+   35 equality_expr: equality_expr . EQUALEQUAL relational_expr
+   36              | equality_expr . NOTEQUAL relational_expr
+
+    EQUALEQUAL  shift, and go to state 95
+    NOTEQUAL    shift, and go to state 96
+
+    $default  reduce using rule 32 (logical_and_expr)
+
+
+state 72
+
+   34 equality_expr: relational_expr .
+   38 relational_expr: relational_expr . LESS additive_expr
+   39                | relational_expr . GREAT additive_expr
+   40                | relational_expr . LESSEQUAL additive_expr
+   41                | relational_expr . GREATEQUAL additive_expr
+
+    LESS        shift, and go to state 97
+    GREAT       shift, and go to state 98
+    LESSEQUAL   shift, and go to state 99
+    GREATEQUAL  shift, and go to state 100
+
+    $default  reduce using rule 34 (equality_expr)
+
+
+state 73
+
+   37 relational_expr: additive_expr .
+   43 additive_expr: additive_expr . PLUS multiplicative_expr
+   44              | additive_expr . MINUS multiplicative_expr
+
+    PLUS   shift, and go to state 101
+    MINUS  shift, and go to state 102
+
+    $default  reduce using rule 37 (relational_expr)
+
+
+state 74
+
+   42 additive_expr: multiplicative_expr .
+   46 multiplicative_expr: multiplicative_expr . TIMES primary_expr
+   47                    | multiplicative_expr . DIVIDE primary_expr
+   48                    | multiplicative_expr . PERCENT primary_expr
+
+    TIMES    shift, and go to state 103
+    DIVIDE   shift, and go to state 104
+    PERCENT  shift, and go to state 105
+
+    $default  reduce using rule 42 (additive_expr)
+
+
+state 75
+
+   45 multiplicative_expr: primary_expr .
+
+    $default  reduce using rule 45 (multiplicative_expr)
+
+
+state 76
+
+   23 assignment: WORD LBRACE expression . RBRACE EQUAL expression
+
+    RBRACE  shift, and go to state 106
+
+
+state 77
+
+   22 assignment: WORD EQUAL expression .
+
+    $default  reduce using rule 22 (assignment)
+
+
+state 78
+
+   68 statement: IF LPARENT expression . RPARENT $@3 statement $@4 else_optional
+
+    RPARENT  shift, and go to state 107
+
+
+state 79
+
+   71 statement: WHILE LPARENT $@5 . expression RPARENT $@6 statement
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    expression           go to state 108
+    logical_or_expr      go to state 69
+    logical_and_expr     go to state 70
+    equality_expr        go to state 71
+    relational_expr      go to state 72
+    additive_expr        go to state 73
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 80
+
+   74 statement: DO $@7 statement . WHILE LPARENT expression RPARENT $@8 SEMICOLON
+
+    WHILE  shift, and go to state 109
+
+
+state 81
+
+   22 assignment: WORD . EQUAL expression
+   23           | WORD . LBRACE expression RBRACE EQUAL expression
+
+    LBRACE  shift, and go to state 46
+    EQUAL   shift, and go to state 47
+
+
+state 82
+
+   78 statement: FOR LPARENT assignment . SEMICOLON $@9 expression SEMICOLON $@10 assignment RPARENT $@11 statement
+
+    SEMICOLON  shift, and go to state 110
+
+
+state 83
+
+   61 local_var_list: local_var_list COMA . WORD
+
+    WORD  shift, and go to state 111
+
+
+state 84
+
+   59 local_var: var_type local_var_list SEMICOLON .
+
+    $default  reduce using rule 59 (local_var)
+
+
+state 85
+
+   83 jump_statement: CONTINUE SEMICOLON .
+
+    $default  reduce using rule 83 (jump_statement)
+
+
+state 86
+
+   84 jump_statement: BREAK SEMICOLON .
+
+    $default  reduce using rule 84 (jump_statement)
+
+
+state 87
+
+   85 jump_statement: RETURN expression . SEMICOLON
+
+    SEMICOLON  shift, and go to state 112
+
+
+state 88
+
+   52 primary_expr: WORD LBRACE . expression RBRACE
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    expression           go to state 113
+    logical_or_expr      go to state 69
+    logical_and_expr     go to state 70
+    equality_expr        go to state 71
+    relational_expr      go to state 72
+    additive_expr        go to state 73
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 89
+
+   55 primary_expr: LPARENT expression . RPARENT
+
+    RPARENT  shift, and go to state 114
+
+
+state 90
+
+   53 primary_expr: AMPERSAND WORD .
+
+    $default  reduce using rule 53 (primary_expr)
+
+
+state 91
+
+   26 call_arg_list: call_arg_list COMA . expression
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    expression           go to state 115
+    logical_or_expr      go to state 69
+    logical_and_expr     go to state 70
+    equality_expr        go to state 71
+    relational_expr      go to state 72
+    additive_expr        go to state 73
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 92
+
+   24 call: WORD LPARENT call_arguments RPARENT .
+
+    $default  reduce using rule 24 (call)
+
+
+state 93
+
+   31 logical_or_expr: logical_or_expr OROR . logical_and_expr
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    logical_and_expr     go to state 116
+    equality_expr        go to state 71
+    relational_expr      go to state 72
+    additive_expr        go to state 73
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 94
+
+   33 logical_and_expr: logical_and_expr ANDAND . equality_expr
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    equality_expr        go to state 117
+    relational_expr      go to state 72
+    additive_expr        go to state 73
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 95
+
+   35 equality_expr: equality_expr EQUALEQUAL . relational_expr
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    relational_expr      go to state 118
+    additive_expr        go to state 73
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 96
+
+   36 equality_expr: equality_expr NOTEQUAL . relational_expr
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    relational_expr      go to state 119
+    additive_expr        go to state 73
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 97
+
+   38 relational_expr: relational_expr LESS . additive_expr
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    additive_expr        go to state 120
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 98
+
+   39 relational_expr: relational_expr GREAT . additive_expr
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    additive_expr        go to state 121
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 99
+
+   40 relational_expr: relational_expr LESSEQUAL . additive_expr
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    additive_expr        go to state 122
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 100
+
+   41 relational_expr: relational_expr GREATEQUAL . additive_expr
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    additive_expr        go to state 123
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 101
+
+   43 additive_expr: additive_expr PLUS . multiplicative_expr
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    multiplicative_expr  go to state 124
+    primary_expr         go to state 75
+
+
+state 102
+
+   44 additive_expr: additive_expr MINUS . multiplicative_expr
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    multiplicative_expr  go to state 125
+    primary_expr         go to state 75
+
+
+state 103
+
+   46 multiplicative_expr: multiplicative_expr TIMES . primary_expr
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call          go to state 65
+    primary_expr  go to state 126
+
+
+state 104
+
+   47 multiplicative_expr: multiplicative_expr DIVIDE . primary_expr
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call          go to state 65
+    primary_expr  go to state 127
+
+
+state 105
+
+   48 multiplicative_expr: multiplicative_expr PERCENT . primary_expr
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call          go to state 65
+    primary_expr  go to state 128
+
+
+state 106
+
+   23 assignment: WORD LBRACE expression RBRACE . EQUAL expression
+
+    EQUAL  shift, and go to state 129
+
+
+state 107
+
+   68 statement: IF LPARENT expression RPARENT . $@3 statement $@4 else_optional
+
+    $default  reduce using rule 66 ($@3)
+
+    $@3  go to state 130
+
+
+state 108
+
+   71 statement: WHILE LPARENT $@5 expression . RPARENT $@6 statement
+
+    RPARENT  shift, and go to state 131
+
+
+state 109
+
+   74 statement: DO $@7 statement WHILE . LPARENT expression RPARENT $@8 SEMICOLON
+
+    LPARENT  shift, and go to state 132
+
+
+state 110
+
+   78 statement: FOR LPARENT assignment SEMICOLON . $@9 expression SEMICOLON $@10 assignment RPARENT $@11 statement
+
+    $default  reduce using rule 75 ($@9)
+
+    $@9  go to state 133
+
+
+state 111
+
+   61 local_var_list: local_var_list COMA WORD .
+
+    $default  reduce using rule 61 (local_var_list)
+
+
+state 112
+
+   85 jump_statement: RETURN expression SEMICOLON .
+
+    $default  reduce using rule 85 (jump_statement)
+
+
+state 113
+
+   52 primary_expr: WORD LBRACE expression . RBRACE
+
+    RBRACE  shift, and go to state 134
+
+
+state 114
+
+   55 primary_expr: LPARENT expression RPARENT .
+
+    $default  reduce using rule 55 (primary_expr)
+
+
+state 115
+
+   26 call_arg_list: call_arg_list COMA expression .
+
+    $default  reduce using rule 26 (call_arg_list)
+
+
+state 116
+
+   31 logical_or_expr: logical_or_expr OROR logical_and_expr .
+   33 logical_and_expr: logical_and_expr . ANDAND equality_expr
+
+    ANDAND  shift, and go to state 94
+
+    $default  reduce using rule 31 (logical_or_expr)
+
+
+state 117
+
+   33 logical_and_expr: logical_and_expr ANDAND equality_expr .
+   35 equality_expr: equality_expr . EQUALEQUAL relational_expr
+   36              | equality_expr . NOTEQUAL relational_expr
+
+    EQUALEQUAL  shift, and go to state 95
+    NOTEQUAL    shift, and go to state 96
+
+    $default  reduce using rule 33 (logical_and_expr)
+
+
+state 118
+
+   35 equality_expr: equality_expr EQUALEQUAL relational_expr .
+   38 relational_expr: relational_expr . LESS additive_expr
+   39                | relational_expr . GREAT additive_expr
+   40                | relational_expr . LESSEQUAL additive_expr
+   41                | relational_expr . GREATEQUAL additive_expr
+
+    LESS        shift, and go to state 97
+    GREAT       shift, and go to state 98
+    LESSEQUAL   shift, and go to state 99
+    GREATEQUAL  shift, and go to state 100
+
+    $default  reduce using rule 35 (equality_expr)
+
+
+state 119
+
+   36 equality_expr: equality_expr NOTEQUAL relational_expr .
+   38 relational_expr: relational_expr . LESS additive_expr
+   39                | relational_expr . GREAT additive_expr
+   40                | relational_expr . LESSEQUAL additive_expr
+   41                | relational_expr . GREATEQUAL additive_expr
+
+    LESS        shift, and go to state 97
+    GREAT       shift, and go to state 98
+    LESSEQUAL   shift, and go to state 99
+    GREATEQUAL  shift, and go to state 100
+
+    $default  reduce using rule 36 (equality_expr)
+
+
+state 120
+
+   38 relational_expr: relational_expr LESS additive_expr .
+   43 additive_expr: additive_expr . PLUS multiplicative_expr
+   44              | additive_expr . MINUS multiplicative_expr
+
+    PLUS   shift, and go to state 101
+    MINUS  shift, and go to state 102
+
+    $default  reduce using rule 38 (relational_expr)
+
+
+state 121
+
+   39 relational_expr: relational_expr GREAT additive_expr .
+   43 additive_expr: additive_expr . PLUS multiplicative_expr
+   44              | additive_expr . MINUS multiplicative_expr
+
+    PLUS   shift, and go to state 101
+    MINUS  shift, and go to state 102
+
+    $default  reduce using rule 39 (relational_expr)
+
+
+state 122
+
+   40 relational_expr: relational_expr LESSEQUAL additive_expr .
+   43 additive_expr: additive_expr . PLUS multiplicative_expr
+   44              | additive_expr . MINUS multiplicative_expr
+
+    PLUS   shift, and go to state 101
+    MINUS  shift, and go to state 102
+
+    $default  reduce using rule 40 (relational_expr)
+
+
+state 123
+
+   41 relational_expr: relational_expr GREATEQUAL additive_expr .
+   43 additive_expr: additive_expr . PLUS multiplicative_expr
+   44              | additive_expr . MINUS multiplicative_expr
+
+    PLUS   shift, and go to state 101
+    MINUS  shift, and go to state 102
+
+    $default  reduce using rule 41 (relational_expr)
+
+
+state 124
+
+   43 additive_expr: additive_expr PLUS multiplicative_expr .
+   46 multiplicative_expr: multiplicative_expr . TIMES primary_expr
+   47                    | multiplicative_expr . DIVIDE primary_expr
+   48                    | multiplicative_expr . PERCENT primary_expr
+
+    TIMES    shift, and go to state 103
+    DIVIDE   shift, and go to state 104
+    PERCENT  shift, and go to state 105
+
+    $default  reduce using rule 43 (additive_expr)
+
+
+state 125
+
+   44 additive_expr: additive_expr MINUS multiplicative_expr .
+   46 multiplicative_expr: multiplicative_expr . TIMES primary_expr
+   47                    | multiplicative_expr . DIVIDE primary_expr
+   48                    | multiplicative_expr . PERCENT primary_expr
+
+    TIMES    shift, and go to state 103
+    DIVIDE   shift, and go to state 104
+    PERCENT  shift, and go to state 105
+
+    $default  reduce using rule 44 (additive_expr)
+
+
+state 126
+
+   46 multiplicative_expr: multiplicative_expr TIMES primary_expr .
+
+    $default  reduce using rule 46 (multiplicative_expr)
+
+
+state 127
+
+   47 multiplicative_expr: multiplicative_expr DIVIDE primary_expr .
+
+    $default  reduce using rule 47 (multiplicative_expr)
+
+
+state 128
+
+   48 multiplicative_expr: multiplicative_expr PERCENT primary_expr .
+
+    $default  reduce using rule 48 (multiplicative_expr)
+
+
+state 129
+
+   23 assignment: WORD LBRACE expression RBRACE EQUAL . expression
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    expression           go to state 135
+    logical_or_expr      go to state 69
+    logical_and_expr     go to state 70
+    equality_expr        go to state 71
+    relational_expr      go to state 72
+    additive_expr        go to state 73
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 130
+
+   68 statement: IF LPARENT expression RPARENT $@3 . statement $@4 else_optional
+
+    WORD          shift, and go to state 32
+    LCURLY        shift, and go to state 29
+    LONG          shift, and go to state 5
+    LONGSTAR      shift, and go to state 6
+    VOID          shift, and go to state 7
+    CHARSTAR      shift, and go to state 8
+    CHARSTARSTAR  shift, and go to state 9
+    IF            shift, and go to state 34
+    WHILE         shift, and go to state 35
+    DO            shift, and go to state 36
+    FOR           shift, and go to state 37
+
+    $default  reduce using rule 79 ($@12)
+
+    var_type            go to state 38
+    assignment          go to state 39
+    call                go to state 40
+    compound_statement  go to state 41
+    local_var           go to state 42
+    statement           go to state 136
+    $@12                go to state 44
+
+
+state 131
+
+   71 statement: WHILE LPARENT $@5 expression RPARENT . $@6 statement
+
+    $default  reduce using rule 70 ($@6)
+
+    $@6  go to state 137
+
+
+state 132
+
+   74 statement: DO $@7 statement WHILE LPARENT . expression RPARENT $@8 SEMICOLON
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    expression           go to state 138
+    logical_or_expr      go to state 69
+    logical_and_expr     go to state 70
+    equality_expr        go to state 71
+    relational_expr      go to state 72
+    additive_expr        go to state 73
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 133
+
+   78 statement: FOR LPARENT assignment SEMICOLON $@9 . expression SEMICOLON $@10 assignment RPARENT $@11 statement
+
+    WORD           shift, and go to state 60
+    LPARENT        shift, and go to state 61
+    STRING_CONST   shift, and go to state 62
+    INTEGER_CONST  shift, and go to state 63
+    AMPERSAND      shift, and go to state 64
+
+    call                 go to state 65
+    expression           go to state 139
+    logical_or_expr      go to state 69
+    logical_and_expr     go to state 70
+    equality_expr        go to state 71
+    relational_expr      go to state 72
+    additive_expr        go to state 73
+    multiplicative_expr  go to state 74
+    primary_expr         go to state 75
+
+
+state 134
+
+   52 primary_expr: WORD LBRACE expression RBRACE .
+
+    $default  reduce using rule 52 (primary_expr)
+
+
+state 135
+
+   23 assignment: WORD LBRACE expression RBRACE EQUAL expression .
+
+    $default  reduce using rule 23 (assignment)
+
+
+state 136
+
+   68 statement: IF LPARENT expression RPARENT $@3 statement . $@4 else_optional
+
+    $default  reduce using rule 67 ($@4)
+
+    $@4  go to state 140
+
+
+state 137
+
+   71 statement: WHILE LPARENT $@5 expression RPARENT $@6 . statement
+
+    WORD          shift, and go to state 32
+    LCURLY        shift, and go to state 29
+    LONG          shift, and go to state 5
+    LONGSTAR      shift, and go to state 6
+    VOID          shift, and go to state 7
+    CHARSTAR      shift, and go to state 8
+    CHARSTARSTAR  shift, and go to state 9
+    IF            shift, and go to state 34
+    WHILE         shift, and go to state 35
+    DO            shift, and go to state 36
+    FOR           shift, and go to state 37
+
+    $default  reduce using rule 79 ($@12)
+
+    var_type            go to state 38
+    assignment          go to state 39
+    call                go to state 40
+    compound_statement  go to state 41
+    local_var           go to state 42
+    statement           go to state 141
+    $@12                go to state 44
+
+
+state 138
+
+   74 statement: DO $@7 statement WHILE LPARENT expression . RPARENT $@8 SEMICOLON
+
+    RPARENT  shift, and go to state 142
+
+
+state 139
+
+   78 statement: FOR LPARENT assignment SEMICOLON $@9 expression . SEMICOLON $@10 assignment RPARENT $@11 statement
+
+    SEMICOLON  shift, and go to state 143
+
+
+state 140
+
+   68 statement: IF LPARENT expression RPARENT $@3 statement $@4 . else_optional
+
+    ELSE  shift, and go to state 144
+
+    ELSE      [reduce using rule 82 (else_optional)]
+    $default  reduce using rule 82 (else_optional)
+
+    else_optional  go to state 145
+
+
+state 141
+
+   71 statement: WHILE LPARENT $@5 expression RPARENT $@6 statement .
+
+    $default  reduce using rule 71 (statement)
+
+
+state 142
+
+   74 statement: DO $@7 statement WHILE LPARENT expression RPARENT . $@8 SEMICOLON
+
+    $default  reduce using rule 73 ($@8)
+
+    $@8  go to state 146
+
+
+state 143
+
+   78 statement: FOR LPARENT assignment SEMICOLON $@9 expression SEMICOLON . $@10 assignment RPARENT $@11 statement
+
+    $default  reduce using rule 76 ($@10)
+
+    $@10  go to state 147
+
+
+state 144
+
+   81 else_optional: ELSE . statement
+
+    WORD          shift, and go to state 32
+    LCURLY        shift, and go to state 29
+    LONG          shift, and go to state 5
+    LONGSTAR      shift, and go to state 6
+    VOID          shift, and go to state 7
+    CHARSTAR      shift, and go to state 8
+    CHARSTARSTAR  shift, and go to state 9
+    IF            shift, and go to state 34
+    WHILE         shift, and go to state 35
+    DO            shift, and go to state 36
+    FOR           shift, and go to state 37
+
+    $default  reduce using rule 79 ($@12)
+
+    var_type            go to state 38
+    assignment          go to state 39
+    call                go to state 40
+    compound_statement  go to state 41
+    local_var           go to state 42
+    statement           go to state 148
+    $@12                go to state 44
+
+
+state 145
+
+   68 statement: IF LPARENT expression RPARENT $@3 statement $@4 else_optional .
+
+    $default  reduce using rule 68 (statement)
+
+
+state 146
+
+   74 statement: DO $@7 statement WHILE LPARENT expression RPARENT $@8 . SEMICOLON
+
+    SEMICOLON  shift, and go to state 149
+
+
+state 147
+
+   78 statement: FOR LPARENT assignment SEMICOLON $@9 expression SEMICOLON $@10 . assignment RPARENT $@11 statement
+
+    WORD  shift, and go to state 81
+
+    assignment  go to state 150
+
+
+state 148
+
+   81 else_optional: ELSE statement .
+
+    $default  reduce using rule 81 (else_optional)
+
+
+state 149
+
+   74 statement: DO $@7 statement WHILE LPARENT expression RPARENT $@8 SEMICOLON .
+
+    $default  reduce using rule 74 (statement)
+
+
+state 150
+
+   78 statement: FOR LPARENT assignment SEMICOLON $@9 expression SEMICOLON $@10 assignment . RPARENT $@11 statement
+
+    RPARENT  shift, and go to state 151
+
+
+state 151
+
+   78 statement: FOR LPARENT assignment SEMICOLON $@9 expression SEMICOLON $@10 assignment RPARENT . $@11 statement
+
+    $default  reduce using rule 77 ($@11)
+
+    $@11  go to state 152
+
+
+state 152
+
+   78 statement: FOR LPARENT assignment SEMICOLON $@9 expression SEMICOLON $@10 assignment RPARENT $@11 . statement
+
+    WORD          shift, and go to state 32
+    LCURLY        shift, and go to state 29
+    LONG          shift, and go to state 5
+    LONGSTAR      shift, and go to state 6
+    VOID          shift, and go to state 7
+    CHARSTAR      shift, and go to state 8
+    CHARSTARSTAR  shift, and go to state 9
+    IF            shift, and go to state 34
+    WHILE         shift, and go to state 35
+    DO            shift, and go to state 36
+    FOR           shift, and go to state 37
+
+    $default  reduce using rule 79 ($@12)
+
+    var_type            go to state 38
+    assignment          go to state 39
+    call                go to state 40
+    compound_statement  go to state 41
+    local_var           go to state 42
+    statement           go to state 153
+    $@12                go to state 44
+
+
+state 153
+
+   78 statement: FOR LPARENT assignment SEMICOLON $@9 expression SEMICOLON $@10 assignment RPARENT $@11 statement .
+
+    $default  reduce using rule 78 (statement)

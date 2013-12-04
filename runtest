@@ -1,0 +1,8 @@
+#!/bin/sh
+
+FILE=testIf
+
+make
+./scc $FILE.c
+gcc -g -o $FILE $FILE.s
+./$FILE 

@@ -1,0 +1,5 @@
+array2.c: In function 'main':
+array2.c:8:6: warning: incompatible implicit declaration of built-in function 'malloc' [enabled by default]
+array2.c:14:2: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+array2.c:17:3: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat]
+array2.c:17:3: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long int' [-Wformat]

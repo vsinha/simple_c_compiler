@@ -1,0 +1,16 @@
+quicksortstr.c: In function 'printArray':
+quicksortstr.c:6:3: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+quicksortstr.c:6:3: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat]
+quicksortstr.c: In function 'print':
+quicksortstr.c:11:2: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+quicksortstr.c: In function 'quicksortsubrange':
+quicksortstr.c:66:8: warning: assignment makes integer from pointer without a cast [enabled by default]
+quicksortstr.c:68:8: warning: assignment makes pointer from integer without a cast [enabled by default]
+quicksortstr.c: In function 'quicksort':
+quicksortstr.c:81:2: warning: passing argument 1 of 'quicksortsubrange' from incompatible pointer type [enabled by default]
+quicksortstr.c:40:6: note: expected 'char **' but argument is of type 'long int *'
+quicksortstr.c: In function 'main':
+quicksortstr.c:91:6: warning: incompatible implicit declaration of built-in function 'malloc' [enabled by default]
+quicksortstr.c:100:2: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+quicksortstr.c:102:2: warning: passing argument 1 of 'quicksort' from incompatible pointer type [enabled by default]
+quicksortstr.c:80:6: note: expected 'long int *' but argument is of type 'char **'

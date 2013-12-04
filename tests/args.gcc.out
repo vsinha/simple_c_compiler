@@ -1,0 +1,4 @@
+args.c: In function 'compute':
+args.c:4:2: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+args.c:4:2: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat]
+args.c:4:2: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long int' [-Wformat]

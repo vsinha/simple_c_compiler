@@ -1,0 +1,3 @@
+expr.c: In function 'main':
+expr.c:4:2: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+expr.c:4:2: warning: unknown conversion type character '=' in format [-Wformat]

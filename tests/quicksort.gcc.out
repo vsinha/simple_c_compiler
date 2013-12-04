@@ -1,0 +1,8 @@
+quicksort.c: In function 'printArray':
+quicksort.c:6:3: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+quicksort.c:6:3: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat]
+quicksort.c: In function 'print':
+quicksort.c:11:2: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+quicksort.c: In function 'main':
+quicksort.c:66:6: warning: incompatible implicit declaration of built-in function 'malloc' [enabled by default]
+quicksort.c:79:2: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]

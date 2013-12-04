@@ -1,0 +1,3 @@
+return.c: In function 'main':
+return.c:12:2: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+return.c:12:2: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat]

@@ -1,0 +1,4 @@
+array.c: In function 'main':
+array.c:6:6: warning: incompatible implicit declaration of built-in function 'malloc' [enabled by default]
+array.c:9:2: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+array.c:9:2: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat]
